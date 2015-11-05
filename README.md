@@ -28,3 +28,4 @@ Next, we need to install grunt and all the required modules / plugins that we ne
 ### Option B:
 
 Double click **dependencyInstaller.bat**
+*This file will install all the required dependencies for this setup*
