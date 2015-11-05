@@ -1,0 +1,24 @@
+{
+  "name": "Bootstrap setup",
+  "authors": [
+    "ivjose <ivjosesantos@gmail.com>"
+  ],
+  "description": "initial",
+  "main": "test",
+  "moduleType": [],
+  "keywords": [
+    "test"
+  ],
+  "license": "MIT",
+  "homepage": "yondu.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5"
+  }
+}
