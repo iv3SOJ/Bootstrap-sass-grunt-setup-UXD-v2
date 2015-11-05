@@ -70,7 +70,197 @@
 
 <p><code>bower install bootstrap-sass --save</code></p>
 
-<p><em>this commands are used to initialise bower inside your project folder -- which in this case is MyProject -- also to include bootstrap sass on the project.</em></p>
+<p><em>this commands are used to initialise bower inside your project folder (which in this case is <strong>MyProject</strong>) also to include bootstrap sass on the project.</em></p>
+
+<p><code>npm init</code></p>
+
+<p>_After this command you are required to enter information / details regarding the project. Feel free to fill it up or not.
+_</p>
+
+<p>Next, we create the necessary folders for our development.</p>
+
+<ul>
+<li><code>mkdir js</code></li>
+<li><code>mkdir css</code></li>
+<li><code>mkdir scripts</code></li>
+<li><code>mkdir scss</code></li>
+</ul>
+
+<p>or Create the following folders inside <strong>MyProject.</strong></p>
+
+<ul>
+<li>js</li>
+<li>scss</li>
+<li>scripts</li>
+<li>scss</li>
+</ul>
+
+<h2>
+<a id="grunt-setup" class="anchor" href="#grunt-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Grunt Setup</h2>
+
+<p>Next, we need to install grunt and all the required modules / plugins that we need.</p>
+
+<p><code>npm install grunt</code></p>
+
+<p><code>npm install matchdep --save-dev</code></p>
+
+<p><code>npm install grunt-contrib-copy --save-dev</code></p>
+
+<p><code>npm install grunt-contrib-uglify --save-dev</code></p>
+
+<p><code>npm install grunt-contrib-watch --save-dev</code></p>
+
+<p><code>npm install grunt-open --save-dev</code></p>
+
+<p><code>npm install grunt-express --save-dev</code></p>
+
+<p><code>npm install grunt-parallel --save-dev</code></p>
+
+<p><code>npm install grunt-rev --save-dev</code></p>
+
+<p><code>npm install grunt-sass --save-dev</code></p>
+
+<p>Create Grunt file (<strong>Gruntfile.js</strong>) with this code: </p>
+
+<p>// Start</p>
+
+<p>`module.exports = function(grunt){
+    // Load Grunt tasks declared in the package.json file
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);</p>
+
+<pre><code>grunt.initConfig({
+    rev : {
+        options : {
+            encoding : 'utf8',
+            algorithm : 'md5',
+            length : 5
+        },
+        assets : {
+            files : [{
+                src : [
+                    'js/*.js',
+                    'css/*.css'
+                ]
+            }]
+        }
+    },
+    // copy files
+    copy: {
+        main: {
+            files: [
+                // Vendor scripts.
+                {
+                    expand: true,
+                    cwd: 'bower_components/bootstrap-sass/assets/javascripts/',
+                    src: ['**/*.js'],
+                    dest: 'scripts/bootstrap-sass/'
+                },
+                {
+                    expand: true,
+                    cwd: 'bower_components/jquery/dist/',
+                    src: ['**/*.js', '**/*.map'],
+                    dest: 'scripts/jquery/'
+                },
+
+                // Fonts.
+                {
+                    expand: true,
+                    filter: 'isFile',
+                    flatten: true,
+                    cwd: 'bower_components/',
+                    src: ['bootstrap-sass/assets/fonts/**'],
+                    dest: 'fonts/'
+                },
+
+                // Stylesheets
+                {
+                    expand: true,
+                    cwd: 'bower_components/bootstrap-sass/assets/stylesheets/',
+                    src: ['**/*.scss'],
+                    dest: 'scss/'
+                }
+            ]
+        },
+    },
+
+    // SASS compilation
+    // Compile SASS files into minified CSS.
+    sass: {
+        options: {
+            includePaths: ['bower_components/bootstrap-sass/assets/stylesheets']
+        },
+        dist: {
+            options: {
+                outputStyle: 'compressed'
+            },
+            files: {
+                'css/app.css': 'scss/app.scss'
+            }
+        }
+    },
+
+    // uglify
+    uglify : {
+        options : {
+            mangle : false
+        },
+        my_target : {
+            files : {'js/app.js' : ['scripts/*.js'] }
+        }
+    },
+
+    // The webserver
+    express : {
+        all : {
+            options :{
+</code></pre>
+
+<p>// Set your file directory 
+                    bases : ['C:\Users\Me\MyProject'],
+                    port : 9000,
+                    hostname : "0.0.0.0",
+                    livereload : true
+                }
+            }
+        },</p>
+
+<pre><code>    watch : {
+        all : {
+            files : ['Gruntfile.js','scripts/*.js', 'index.html'],
+            tasks : ['uglify'],
+            options : {
+                livereload : true
+            }
+        },
+        css : {
+            files : ['scss/*.scss','scss/**/*.scss','scss/**/**/*.scss'],
+            tasks : ['sass']
+        }
+    },
+
+    open : {
+        all : {
+            path : 'http://localhost:9000/index.html'
+        }
+    }
+});
+
+grunt.loadNpmTasks('grunt-sass');
+</code></pre>
+
+<p>grunt.loadNpmTasks('grunt-express');
+grunt.loadNpmTasks('grunt-contrib-watch');
+grunt.loadNpmTasks('grunt-contrib-copy');
+grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-rev');</p>
+
+<pre><code>// Establish tasks we can run from the terminal.
+</code></pre>
+
+<p>grunt.registerTask('build', ['sass', 'copy', 'uglify', 'express', 'open']);
+    grunt.registerTask('default', ['build', 'watch']);
+};`
+// End</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD">Bootstrap-sass-grunt-setup-uxd</a> is maintained by <a href="https://github.com/iv3SOJ">iv3SOJ</a>.</span>
