@@ -31,6 +31,18 @@ Double click **dependencyInstaller.bat**
 
 *This file will install all the required dependencies for this setup*
 
+
+### Configuration
+
+Open config.json using notepad
+
+Change the value of "location" to the directory of your project.
+
+ex. `{ "location" : "C:\\Users\\Me\\MyProject" }`
+
+*use double back slashes (\\) to escape the backslash string* 
+
+
 ### Viewing Your Project
 
 To view your project, just open your command prompt
