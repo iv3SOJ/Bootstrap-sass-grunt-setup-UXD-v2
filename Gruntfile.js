@@ -3,6 +3,9 @@ module.exports = function (grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
+    // Get information from config.json regarding the location of the project
+    pkg: grunt.file.readJSON('config.json'),
+    
     rev: {
       options: {
         encoding: 'utf8',
@@ -92,8 +95,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           // Set your file directory 
-          
-          bases: ['G:\\Git hub file Repo file\\Bootstrap-sass-grunt-setup-UXD'],
+          bases : ['<%= pkg.location %>'],
           port: 9000,
           hostname: "0.0.0.0",
           livereload: true
