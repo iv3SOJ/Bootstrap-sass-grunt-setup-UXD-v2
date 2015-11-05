@@ -28,4 +28,17 @@ Next, we need to install grunt and all the required modules / plugins that we ne
 ### Option B:
 
 Double click **dependencyInstaller.bat**
+
 *This file will install all the required dependencies for this setup*
+
+### Viewing Your Project
+
+To view your project, just open your command prompt
+
+`WINDOW + R`, type `cmd`
+
+Locate your project folder
+
+example: `C:\Users\Me\MyProject`
+
+and type `grunt`
