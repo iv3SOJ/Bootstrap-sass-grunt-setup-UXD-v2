@@ -123,7 +123,8 @@ module.exports = function (grunt) {
 
     open: {
       all: {
-        path: 'http://localhost:9000/index.html'
+        path: 'http://localhost:9000/index.html',
+        app: 'Chrome'
       }
     }
   });
