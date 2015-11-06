@@ -124,142 +124,137 @@ _</p>
 
 <p><strong>// Start</strong></p>
 
-<p>`module.exports = function(grunt){
+<pre><code>module.exports = function(grunt){
     // Load Grunt tasks declared in the package.json file
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);</p>
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-<pre><code>grunt.initConfig({
-    rev : {
-        options : {
-            encoding : 'utf8',
-            algorithm : 'md5',
-            length : 5
-        },
-        assets : {
-            files : [{
-                src : [
-                    'js/*.js',
-                    'css/*.css'
-                ]
-            }]
-        }
-    },
-    // copy files
-    copy: {
-        main: {
-            files: [
-                // Vendor scripts.
-                {
-                    expand: true,
-                    cwd: 'bower_components/bootstrap-sass/assets/javascripts/',
-                    src: ['**/*.js'],
-                    dest: 'scripts/bootstrap-sass/'
-                },
-                {
-                    expand: true,
-                    cwd: 'bower_components/jquery/dist/',
-                    src: ['**/*.js', '**/*.map'],
-                    dest: 'scripts/jquery/'
-                },
-
-                // Fonts.
-                {
-                    expand: true,
-                    filter: 'isFile',
-                    flatten: true,
-                    cwd: 'bower_components/',
-                    src: ['bootstrap-sass/assets/fonts/**'],
-                    dest: 'fonts/'
-                },
-
-                // Stylesheets
-                {
-                    expand: true,
-                    cwd: 'bower_components/bootstrap-sass/assets/stylesheets/',
-                    src: ['**/*.scss'],
-                    dest: 'scss/'
-                }
-            ]
-        },
-    },
-
-    // SASS compilation
-    // Compile SASS files into minified CSS.
-    sass: {
-        options: {
-            includePaths: ['bower_components/bootstrap-sass/assets/stylesheets']
-        },
-        dist: {
-            options: {
-                outputStyle: 'compressed'
+    grunt.initConfig({
+        rev : {
+            options : {
+                encoding : 'utf8',
+                algorithm : 'md5',
+                length : 5
             },
-            files: {
-                'css/app.css': 'scss/app.scss'
+            assets : {
+                files : [{
+                    src : [
+                        'js/*.js',
+                        'css/*.css'
+                    ]
+                }]
             }
-        }
-    },
-
-    // uglify
-    uglify : {
-        options : {
-            mangle : false
         },
-        my_target : {
-            files : {'js/app.js' : ['scripts/*.js'] }
-        }
-    },
+        // copy files
+        copy: {
+            main: {
+                files: [
+                    // Vendor scripts.
+                    {
+                        expand: true,
+                        cwd: 'bower_components/bootstrap-sass/assets/javascripts/',
+                        src: ['**/*.js'],
+                        dest: 'scripts/bootstrap-sass/'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/jquery/dist/',
+                        src: ['**/*.js', '**/*.map'],
+                        dest: 'scripts/jquery/'
+                    },
 
-    // The webserver
-    express : {
-        all : {
-            options :{
-</code></pre>
+                    // Fonts.
+                    {
+                        expand: true,
+                        filter: 'isFile',
+                        flatten: true,
+                        cwd: 'bower_components/',
+                        src: ['bootstrap-sass/assets/fonts/**'],
+                        dest: 'fonts/'
+                    },
 
-<p>// Set your file directory 
-                    bases : ['C:\Users\Me\MyProject'],
+                    // Stylesheets
+                    {
+                        expand: true,
+                        cwd: 'bower_components/bootstrap-sass/assets/stylesheets/',
+                        src: ['**/*.scss'],
+                        dest: 'scss/'
+                    }
+                ]
+            },
+        },
+
+        // SASS compilation
+        // Compile SASS files into minified CSS.
+        sass: {
+            options: {
+                includePaths: ['bower_components/bootstrap-sass/assets/stylesheets']
+            },
+            dist: {
+                options: {
+                    outputStyle: 'compressed'
+                },
+                files: {
+                    'css/app.css': 'scss/app.scss'
+                }
+            }
+        },
+
+        // uglify
+        uglify : {
+            options : {
+                mangle : false
+            },
+            my_target : {
+                files : {'js/app.js' : ['scripts/*.js'] }
+            }
+        },
+
+        // The webserver
+        express : {
+            all : {
+                options :{
+// Set your file directory 
+                    bases : ['C:\\Users\\Me\\MyProject'],
                     port : 9000,
                     hostname : "0.0.0.0",
                     livereload : true
                 }
             }
-        },</p>
+        },
 
-<pre><code>    watch : {
-        all : {
-            files : ['Gruntfile.js','scripts/*.js', 'index.html'],
-            tasks : ['uglify'],
-            options : {
-                livereload : true
+        watch : {
+            all : {
+                files : ['Gruntfile.js','scripts/*.js', 'index.html'],
+                tasks : ['uglify'],
+                options : {
+                    livereload : true
+                }
+            },
+            css : {
+                files : ['scss/*.scss','scss/**/*.scss','scss/**/**/*.scss'],
+                tasks : ['sass']
             }
         },
-        css : {
-            files : ['scss/*.scss','scss/**/*.scss','scss/**/**/*.scss'],
-            tasks : ['sass']
+
+        open : {
+            all : {
+                path : 'http://localhost:9000/index.html'
+            }
         }
-    },
+    });
 
-    open : {
-        all : {
-            path : 'http://localhost:9000/index.html'
-        }
-    }
-});
-
-grunt.loadNpmTasks('grunt-sass');
-</code></pre>
-
-<p>grunt.loadNpmTasks('grunt-express');
+    grunt.loadNpmTasks('grunt-sass');
+grunt.loadNpmTasks('grunt-express');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-copy');
 grunt.loadNpmTasks('grunt-contrib-uglify');
-grunt.loadNpmTasks('grunt-rev');</p>
+grunt.loadNpmTasks('grunt-rev');
 
-<pre><code>// Establish tasks we can run from the terminal.
-</code></pre>
-
-<p>grunt.registerTask('build', ['sass', 'copy', 'uglify', 'express', 'open']);
+    // Establish tasks we can run from the terminal.
+grunt.registerTask('build', ['sass', 'copy', 'uglify', 'express', 'open']);
     grunt.registerTask('default', ['build', 'watch']);
-};`</p>
+};
+</code></pre>
 
 <p><strong>// End</strong></p>
 
@@ -269,36 +264,37 @@ grunt.loadNpmTasks('grunt-rev');</p>
 
 <p>** app.scss structure **</p>
 
-<p>`<a href="https://github.com/import" class="user-mention">@import</a> "_bootstrap.scss";</p>
+<pre><code>`@import "_bootstrap.scss";
 
-<p>/** Uncomment to Active *<em>/
-//</em>Base Folder*//
-//<a href="https://github.com/import" class="user-mention">@import</a> "base/mixins";
-//<a href="https://github.com/import" class="user-mention">@import</a> "base/typography";
-//<a href="https://github.com/import" class="user-mention">@import</a> "base/variables";
-//<a href="https://github.com/import" class="user-mention">@import</a> "base/button";
-//<a href="https://github.com/import" class="user-mention">@import</a> "base/helpers";
-//End Closing</p>
+/** Uncomment to Active **/
+//*Base Folder*//
+//@import "base/mixins";
+//@import "base/typography";
+//@import "base/variables";
+//@import "base/button";
+//@import "base/helpers";
+//End Closing
 
-<p>//<em>Layout Folder</em>//
-//<a href="https://github.com/import" class="user-mention">@import</a> "layout/header";
-//<a href="https://github.com/import" class="user-mention">@import</a> "layout/main-content";
-//<a href="https://github.com/import" class="user-mention">@import</a> "layout/sidebar";
-//<a href="https://github.com/import" class="user-mention">@import</a> "layout/navigation";
-//<a href="https://github.com/import" class="user-mention">@import</a> "layout/footer";
-//<a href="https://github.com/import" class="user-mention">@import</a> "layout/pages/home";
-//<a href="https://github.com/import" class="user-mention">@import</a> "layout/pages/about-us";
-//<a href="https://github.com/import" class="user-mention">@import</a> "layout/pages/contact-us";
-//End Closing</p>
+//*Layout Folder*//
+//@import "layout/header";
+//@import "layout/main-content";
+//@import "layout/sidebar";
+//@import "layout/navigation";
+//@import "layout/footer";
+//@import "layout/pages/home";
+//@import "layout/pages/about-us";
+//@import "layout/pages/contact-us";
+//End Closing
 
-<p>//<em>Modules Folder</em>//
-//<a href="https://github.com/import" class="user-mention">@import</a>  "modules/sub-navigation";
-//<a href="https://github.com/import" class="user-mention">@import</a>  "modules/thumbnail";
-//<a href="https://github.com/import" class="user-mention">@import</a>  "modules/panel";
-//<a href="https://github.com/import" class="user-mention">@import</a>  "modules/modal";
-//<a href="https://github.com/import" class="user-mention">@import</a>  "modules/breadcrumbs";
-//<a href="https://github.com/import" class="user-mention">@import</a>  "modules/forms";
-//End Closing`</p>
+//*Modules Folder*//
+//@import  "modules/sub-navigation";
+//@import  "modules/thumbnail";
+//@import  "modules/panel";
+//@import  "modules/modal";
+//@import  "modules/breadcrumbs";
+//@import  "modules/forms";
+//End Closing`
+</code></pre>
 
 <p><em>Uncomment scss file if will be use and create scss files (ex: _mixins.scss) or add new scss file for other function.</em></p>
 
@@ -326,23 +322,26 @@ grunt.loadNpmTasks('grunt-rev');</p>
 
 <p>Next, we create an <strong>index.html</strong> file for our Project and save:</p>
 
-<p>`&lt;!DOCTYPE html&gt;
+<pre><code>`&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
 
-</p>
-    
-    Sample for live reload yeah
-    
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Sample for live reload yeah&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/app.css" /&gt;
 
-<p>
-</p>
-    <h1>
-<a id="hello-there" class="anchor" href="#hello-there" aria-hidden="true"><span class="octicon octicon-link"></span></a>hello there</h1>
-    <div>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially </p>
-    </div>
-    
+&lt;/head&gt;
 
-`
+&lt;body&gt;
+  &lt;h1 class="title"&gt;hello there&lt;/h1&gt;
+  &lt;div class="content"&gt;
+    &lt;p&gt;Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;script src="js/app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;`
+</code></pre>
 
 <p>And lastly, we run this command:</p>
 
