@@ -7,6 +7,17 @@
 
 Next, we need to install grunt and all the required modules / plugins that we need.
 
+### Configuration
+
+Open config.json using notepad
+
+Change the value of "location" to the directory of your project.
+
+ex. `{ "location" : "C:\\Users\\Me\\MyProject" }`
+
+*use double back slashes (\\\\) to escape the backslash string*
+
+
 ### Option A:
 
 `npm install grunt`
@@ -33,18 +44,7 @@ Next, we need to install grunt and all the required modules / plugins that we ne
 
 Double click **dependencyInstaller.bat**
 
-*This file will install all the required dependencies for this setup*
-
-
-### Configuration
-
-Open config.json using notepad
-
-Change the value of "location" to the directory of your project.
-
-ex. `{ "location" : "C:\\Users\\Me\\MyProject" }`
-
-*use double back slashes (\\\\) to escape the backslash string* 
+*This file will install all the required dependencies for this setup* 
 
 
 ### Viewing Your Project

@@ -123,18 +123,17 @@ module.exports = function (grunt) {
 
     open: {
       all: {
-        path: 'http://localhost:9000/index.html',
-        app : 'Google Chrome'
+        path: 'http://localhost:9000/index.html'
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-express');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-rev');
+  // grunt.loadNpmTasks('grunt-sass');
+  // grunt.loadNpmTasks('grunt-express');
+  // grunt.loadNpmTasks('grunt-contrib-watch');
+  // grunt.loadNpmTasks('grunt-contrib-copy');
+  // grunt.loadNpmTasks('grunt-contrib-uglify');
+  // grunt.loadNpmTasks('grunt-rev');
 
   // Establish tasks we can run from the terminal.
   grunt.registerTask('build', ['sass', 'copy', 'uglify', 'express', 'open']);
