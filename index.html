@@ -145,8 +145,6 @@
 
 <p>Create Grunt file (<strong>Gruntfile.js</strong>) with this code: </p>
 
-<p><strong>// Start</strong></p>
-
 <pre><code>module.exports = function(grunt){
     // Load Grunt tasks declared in the package.json file
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -278,8 +276,6 @@ grunt.registerTask('build', ['sass', 'copy', 'uglify', 'express', 'open']);
     grunt.registerTask('default', ['build', 'watch']);
 };
 </code></pre>
-
-<p><strong>// End</strong></p>
 
 <p>Then, create <strong>app.scss</strong> file inside our <strong>scss</strong> folder:</p>
 
