@@ -63,17 +63,24 @@ module.exports = function (grunt) {
     // SASS compilation
     // Compile SASS files into minified CSS.
     sass: {
-      options: {
-        includePaths: [
+      dev: {
+        options: {
+          includePaths: [
           'bower_components/bootstrap-sass/assets/stylesheets'
-        ]
+        ],
+          style: 'expanded'
+        },
+        files: {
+          'css/app.css': 'scss/app.scss'
+        }
       },
+
       dist: {
         options: {
           outputStyle: 'compressed'
         },
         files: {
-          'css/app.css': 'scss/app.scss'
+          'prod/css/app.min.css': 'scss/app.scss'
         }
       }
     },
