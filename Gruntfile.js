@@ -80,7 +80,7 @@ module.exports = function (grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          'prod/css/app.min.css': 'scss/app.scss'
+          'dist/css/app.min.css': 'scss/app.scss'
         }
       }
     },
@@ -112,7 +112,7 @@ module.exports = function (grunt) {
 
     watch: {
       all: {
-        files: ['Gruntfile.js', 'scripts/*.js', 'index.html'],
+        files: ['Gruntfile.js', 'scripts/*.js', '*.html'],
         tasks: ['uglify'],
         options: {
           livereload: true
@@ -124,7 +124,7 @@ module.exports = function (grunt) {
           'scss/**/*.scss',
           'scss/**/**/*.scss'
         ],
-        tasks: ['sass']
+        tasks: ['sass:dev','sass:dist']
       }
     },
 
