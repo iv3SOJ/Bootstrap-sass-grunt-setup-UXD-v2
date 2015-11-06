@@ -1,4 +1,7 @@
 # Bootstrap-sass-grunt-setup-UXD
+### Quicklink
+(http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD/)
+
 ### Grunt Setup
 
 Next, we need to install grunt and all the required modules / plugins that we need.
@@ -40,7 +43,7 @@ Change the value of "location" to the directory of your project.
 
 ex. `{ "location" : "C:\\Users\\Me\\MyProject" }`
 
-*use double back slashes (\\) to escape the backslash string* 
+*use double back slashes (\\\\) to escape the backslash string* 
 
 
 ### Viewing Your Project
