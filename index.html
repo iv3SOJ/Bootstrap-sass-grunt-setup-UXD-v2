@@ -145,20 +145,23 @@
 
 <p>Create Grunt file (<strong>Gruntfile.js</strong>) with this code: </p>
 
-<pre><code>module.exports = function(grunt){
+<pre><code>module.exports = function (grunt) {
     // Load Grunt tasks declared in the package.json file
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     grunt.initConfig({
-        rev : {
-            options : {
-                encoding : 'utf8',
-                algorithm : 'md5',
-                length : 5
+        // Get information from config.json regarding the location of the project
+        pkg: grunt.file.readJSON('config.json'),
+
+        rev: {
+            options: {
+                encoding: 'utf8',
+                algorithm: 'md5',
+                length: 5
             },
-            assets : {
-                files : [{
-                    src : [
+            assets: {
+                files: [{
+                    src: [
                         'js/*.js',
                         'css/*.css'
                     ]
@@ -207,81 +210,81 @@
         // SASS compilation
         // Compile SASS files into minified CSS.
         sass: {
-             dev: {
+            dev: {
                 options: {
-                includePaths: [
-                'bower_components/bootstrap-sass/assets/stylesheets'
-         ],
-             style: 'expanded'
-         },
-         files: {
-             'css/app.css': 'scss/app.scss'
-           }
-         },
+                    includePaths: [
+          'bower_components/bootstrap-sass/assets/stylesheets'
+        ],
+                    style: 'expanded'
+                },
+                files: {
+                    'css/app.css': 'scss/app.scss'
+                }
+            },
 
-         dist: {
-             options: {
-                outputStyle: 'compressed'
-             },
-           files: {
-                'prod/css/app.min.css': 'scss/app.scss'
-                  }
-             }
-         },
+            dist: {
+                options: {
+                    outputStyle: 'compressed'
+                },
+                files: {
+                    'prod/css/app.min.css': 'scss/app.scss'
+                }
+            }
+        },
 
         // uglify
-        uglify : {
-            options : {
-                mangle : false
+        uglify: {
+            options: {
+                mangle: false
             },
-            my_target : {
-                files : {'js/app.js' : ['scripts/*.js'] }
+            my_target: {
+                files: {
+                    'js/app.js': ['scripts/*.js']
+                }
             }
         },
 
         // The webserver
-        express : {
-            all : {
-                options :{
-// Set your file directory 
-                    bases : ['C:\\Users\\Me\\MyProject'],
-                    port : 9000,
-                    hostname : "0.0.0.0",
-                    livereload : true
+        express: {
+            all: {
+                options: {
+                    // Set your file directory 
+                    bases: ['&lt;%= pkg.location %&gt;'],
+                    port: 9000,
+                    hostname: "0.0.0.0",
+                    livereload: true
                 }
             }
         },
 
-        watch : {
-            all : {
-                files : ['Gruntfile.js','scripts/*.js', 'index.html'],
-                tasks : ['uglify'],
-                options : {
-                    livereload : true
+        watch: {
+            all: {
+                files: ['Gruntfile.js', 'scripts/*.js', 'index.html'],
+                tasks: ['uglify'],
+                options: {
+                    livereload: true
                 }
             },
-            css : {
-                files : ['scss/*.scss','scss/**/*.scss','scss/**/**/*.scss'],
-                tasks : ['sass']
+            css: {
+                files: [
+          'scss/*.scss',
+          'scss/**/*.scss',
+          'scss/**/**/*.scss'
+        ],
+                tasks: ['sass']
             }
         },
 
-        open : {
-            all : {
-                path : 'http://localhost:9000/index.html'
+        open: {
+            all: {
+                path: 'http://localhost:9000/index.html',
+                app: 'Chrome'
             }
         }
     });
 
-grunt.loadNpmTasks('grunt-sass');
-grunt.loadNpmTasks('grunt-express');
-grunt.loadNpmTasks('grunt-contrib-watch');
-grunt.loadNpmTasks('grunt-contrib-copy');
-grunt.loadNpmTasks('grunt-contrib-uglify');
-grunt.loadNpmTasks('grunt-rev');
-
     // Establish tasks we can run from the terminal.
-grunt.registerTask('build', ['sass', 'copy', 'uglify', 'express', 'open']);
+    grunt.registerTask('build', ['sass', 'copy', 'uglify', 'express', 'open']);
     grunt.registerTask('default', ['build', 'watch']);
 };
 </code></pre>
