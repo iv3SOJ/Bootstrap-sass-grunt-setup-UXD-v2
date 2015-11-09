@@ -1,13 +1,13 @@
 # Bootstrap-sass-grunt-setup-UXD
 ### Quicklink
 
-***
+---
 
 click here to go to [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD/)
 
 ### Project Setup
 
-***
+---
 
 * Download Zip file
 * Set path where will you create project folder 
@@ -16,7 +16,7 @@ click here to go to [Bootstrap-sass grunt setup - UXD Documentation](http://iv3s
 
 ### Bower Installation
 
-***
+---
 
 Type this in your command prompt or Git Bash then Enter.
 
@@ -24,7 +24,7 @@ Type this in your command prompt or Git Bash then Enter.
 
 ### Configuration
 
-***
+---
 
 Open config.json using notepad
 
@@ -36,13 +36,13 @@ ex. `{ "location" : "C:\\Users\\Me\\MyProject" }`
 
 ### Grunt Setup
 
-***
+---
 
 Next, we need to install grunt and all the required modules / plugins that we need.
 
 ### Option A:
 
-***
+---
 
 `npm install grunt`
 
@@ -66,7 +66,7 @@ Next, we need to install grunt and all the required modules / plugins that we ne
 
 ### Option B:
 
-***
+---
 
 Double click **dependencyInstaller.bat**
 
@@ -75,7 +75,7 @@ Double click **dependencyInstaller.bat**
 
 ### Viewing Your Project
 
-***
+---
 
 To view your project, just open your command prompt
 
