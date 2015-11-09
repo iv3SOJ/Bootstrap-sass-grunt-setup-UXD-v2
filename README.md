@@ -1,12 +1,10 @@
 # Bootstrap-sass-grunt-setup-UXD
-### Quicklink
 
----
+## Quicklink
 
 click here to go to [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD/)
 
 ## Project Setup
-
 
 * Download Zip file
 * Set path where will you create project folder 
