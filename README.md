@@ -3,9 +3,11 @@
 
 click here to go to Bootstrap-sass grunt setup - UXD [http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD/](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD/)
 
-### Grunt Setup
+### Bower Installation
 
-Next, we need to install grunt and all the required modules / plugins that we need.
+type this in your command line or Git Bash then Enter.
+
+`bower install bootstrap-sass --save`
 
 ### Configuration
 
@@ -17,6 +19,9 @@ ex. `{ "location" : "C:\\Users\\Me\\MyProject" }`
 
 *use double back slashes (\\\\) to escape the backslash string*
 
+### Grunt Setup
+
+Next, we need to install grunt and all the required modules / plugins that we need.
 
 ### Option A:
 
