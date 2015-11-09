@@ -5,7 +5,7 @@ click here to go to Bootstrap-sass grunt setup - UXD [http://iv3soj.github.io/Bo
 
 ### Bower Installation
 
-type this in your command line or Git Bash then Enter.
+Type this in your command line or Git Bash then Enter.
 
 `bower install bootstrap-sass --save`
 
