@@ -1,11 +1,11 @@
 # Bootstrap-sass-grunt-setup-UXD
 
-click here  [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD/)
+click here  [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD-v1.2/)
 
 
 ## Download
 
-click [Download Zip file](https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD/archive/master.zip)
+click [Download Zip file](https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD/zipball/master)
 
 ## Project Setup
 
@@ -65,7 +65,7 @@ Double click **dependencyInstaller.bat**
 
 ## Viewing Your Project
 
-To view your project, just open your command prompt
+To view your project, just open your Command Prompt or Git Bash
 
 `WINDOW + R`, type `cmd`
 
