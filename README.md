@@ -1,8 +1,6 @@
 # Bootstrap-sass-grunt-setup-UXD
 
-## Quicklink
-
-click here to go to [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD/)
+click here  [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD/)
 
 ## Download
 
@@ -13,7 +11,7 @@ click [Download Zip file](https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-U
 * Download Zip file
 * Set path where will you create project folder 
 * Rename project folder 
-* Navigate your project folder directory inside the Command Prompt or Git Bash. ex.(`cd C:\Users\Name\MyProject`)
+* Open Command Prompt or Git Bash and Navigate your project folder directory.  ex.(`cd C:\Users\Name\MyProject`)
 
 ## Bower Installation
 
