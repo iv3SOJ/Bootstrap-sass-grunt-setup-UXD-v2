@@ -18,7 +18,7 @@ click [Download Zip file](https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-U
 
 Type this in your command prompt or Git Bash then Enter.
 
-`bower install bootstrap-sass --save`
+`bower install`
 
 ## Configuration
 
@@ -34,7 +34,7 @@ ex. `{ "location" : "C:\\Users\\Me\\MyProject" }`
 
 Next, we need to install grunt and all the required modules / plugins that we need.
 
-`npm install grunt
+`npm install`
 
 *using this command, node will install all dependencies that are listed inside your package.json
 
