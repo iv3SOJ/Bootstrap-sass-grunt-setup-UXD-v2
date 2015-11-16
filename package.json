@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^6.1.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-copy": "^0.8.2",
@@ -20,7 +21,6 @@
     "grunt-newer": "^1.1.1",
     "grunt-open": "^0.2.3",
     "grunt-parallel": "^0.4.1",
-    "grunt-pixrem": "^0.1.2",
     "grunt-postcss": "^0.7.1",
     "grunt-rev": "^0.1.0",
     "grunt-sass": "^1.1.0",

@@ -50,7 +50,7 @@ module.exports = function (grunt) {
     // Post process CSS files
     postcss : {
       options: {
-        map: true, // inline sourcemaps
+        // map: true, // inline sourcemaps
 
         // or
         map: {
@@ -59,7 +59,6 @@ module.exports = function (grunt) {
         },
 
         processors: [
-        require('pixrem')(), // add fallbacks for rem units
         require('autoprefixer')({
             browsers: 'last 2 versions'
           }) // add vendor prefixes
