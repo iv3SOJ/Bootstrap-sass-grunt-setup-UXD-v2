@@ -34,45 +34,9 @@ ex. `{ "location" : "C:\\Users\\Me\\MyProject" }`
 
 Next, we need to install grunt and all the required modules / plugins that we need.
 
-## Option A:
-
 `npm install grunt
 
-`npm install matchdep --save-dev
-
-`npm install grunt-contrib-concat --save-dev
-
-`npm install grunt-contrib-copy --save-dev
-
-`npm install grunt-contrib-htmlmin --save-dev
-
-`npm install grunt-contrib-uglify --save-dev
-
-`npm install grunt-contrib-watch --save-dev
-
-`npm install grunt-injector --save-dev
-
-`npm install grunt-newer --save-dev
-
-`npm install grunt-pixrem --save-dev
-
-`npm install grunt-postcss --save-dev
-
-`npm install grunt-open --save-dev
-
-`npm install grunt-express --save-dev
-
-`npm install grunt-rev --save-dev
-
-`npm install grunt-parallel --save-dev
-
-`npm install grunt-sass --save-dev
-
-## Option B:
-
-Double click **dependencyInstaller.bat**
-
-*This file will install all the required dependencies for this setup* 
+*using this command, node will install all dependencies that are listed inside your package.json
 
 
 ## Viewing Your Project
