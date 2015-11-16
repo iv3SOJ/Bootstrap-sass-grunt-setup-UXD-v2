@@ -1,12 +1,15 @@
 module.exports = function (grunt) {
-  // Load Grunt tasks declared in the package.json file
+
+  // Run all dependencies that starts with "grunt-"
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  // Setup
   grunt.initConfig({
-    // Get information from config.json regarding the location of the project
     pkg: grunt.file.readJSON('config.json'),
-    
-    rev: {
+
+
+    // Disable caching of files
+    rev : {
       options: {
         encoding: 'utf8',
         algorithm: 'md5',
@@ -15,90 +18,179 @@ module.exports = function (grunt) {
       assets: {
         files: [{
           src: [
-						'js/*.js',
-						'css/*.css'
-					]
-				}]
+            'js/*.js',
+            'css/*.css'
+          ]
+        }]
       }
-    },
-    // copy files
-    copy: {
-      main: {
-        files: [
-                    // Vendor scripts.
-          {
-            expand: true,
-            cwd: 'bower_components/bootstrap-sass/assets/javascripts/',
-            src: ['**/*.js'],
-            dest: 'scripts/bootstrap-sass/'
-                    },
-          {
-            expand: true,
-            cwd: 'bower_components/jquery/dist/',
-            src: ['**/*.js', '**/*.map'],
-            dest: 'scripts/jquery/'
-                    },
-
-                    // Fonts.
-          {
-            expand: true,
-            filter: 'isFile',
-            flatten: true,
-            cwd: 'bower_components/',
-            src: ['bootstrap-sass/assets/fonts/**'],
-            dest: 'fonts/'
-                    },
-
-                    // Stylesheets
-          {
-            expand: true,
-            cwd: 'bower_components/bootstrap-sass/assets/stylesheets/',
-            src: ['**/*.scss'],
-            dest: 'scss/'
-                    }
-                ]
-      },
     },
 
     // SASS compilation
-    // Compile SASS files into minified CSS.
-    sass: {
-      dev: {
+    sass : {
+      dev : {
         options: {
-          includePaths: [
-          'bower_components/bootstrap-sass/assets/stylesheets'
-        ],
-          style: 'expanded'
+          includePaths: ['bower_components/bootstrap-sass/assets/stylesheets'],
+          outputStyle: 'expanded',
+          compress : grunt.config('compress')
         },
         files: {
           'css/app.css': 'scss/app.scss'
         }
       },
-
-      dist: {
-        options: {
-          outputStyle: 'compressed'
+      dist : {
+        options : {
+          outputStyle : 'compressed'
         },
-        files: {
-          'dist/css/app.min.css': 'scss/app.scss'
+        files : {
+          'dist/css/app.css' : 'scss/app.scss'
         }
       }
     },
 
-    // uglify
-    uglify: {
+    // Post process CSS files
+    postcss : {
+      options: {
+        map: true, // inline sourcemaps
+
+        // or
+        map: {
+          inline: false, // save all sourcemaps as separate files...
+          annotation: 'css/maps/' // ...to the specified directory
+        },
+
+        processors: [
+        require('pixrem')(), // add fallbacks for rem units
+        require('autoprefixer')({
+            browsers: 'last 2 versions'
+          }) // add vendor prefixes
+      ]
+      },
+      dist: {
+        src: 'dist/css/*.css'
+      },
+      dev : {
+        src : 'css/*.css'
+      }
+    },
+
+    // Concat JS
+    concat : {
+      options : {
+        separator : ';'
+      },
+      dist: {
+          src : [
+            'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/bootstrap-sass/assets/javascripts/{bootstrap.min,bootstrap-sprockets}.js',
+            'scripts/*.js'
+          ],
+          dest : 'dist/js/app.js',
+          nosort : false
+      },
+      dev: {
+          src : [
+            'scripts/*.js'
+          ],
+          dest : 'js/app.js',
+          nosort : false
+      }
+    },
+
+
+    // Injector Task
+    injector : {
+      options: { },
+      my_target: {
+        files: {
+          'index.html': [
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+            'js/app.js',
+            'css/app.css'
+          ]
+        }
+      }
+    },
+
+    // Uglify JS files
+    uglify : {
       options: {
         mangle: false
       },
       my_target: {
         files: {
-          'js/app.js': ['scripts/*.js']
+          'dist/js/app.js': 'dist/js/app.js'
         }
       }
     },
 
-    // The webserver
-    express: {
+    // HTML minification
+    htmlmin : {
+      dist: {                                      // Target
+        options: {                                 // Target options
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: {                                   // Dictionary of files
+          'dist/index.html': 'index.html'
+        }
+      }
+    },
+
+    // Copy task
+    copy : {
+      // build : {
+      //   cwd : '',
+      //   src : ['**'],
+      //   dest : 'build',
+      //   expand : true
+      // }
+      main: {
+        files: [
+          // Vendor scripts.
+          {
+            expand: true,
+            cwd: 'bower_components/bootstrap-sass/assets/',
+            src: ['**/*.js'],
+            dest: 'dist/js/bootstrap/'
+                    },
+          {
+            expand: true,
+            cwd: 'bower_components/jquery/dist/',
+            src: ['**/*.js', '**/*.map'],
+            dest: 'dist/js/jquery/'
+                    },
+           // Modernizr
+          {
+            expand: true,
+            cwd: 'bower_components/modernizr/',
+            src: ['**/*.js'],
+            dest: 'dist/js/modernizr/'
+                    },
+          {
+            expand: true,
+            cwd : 'js/',
+            src : ['*.js'],
+            dest : 'dist/js/'
+          },
+          {
+            expand: true,
+            cwd : 'css/',
+            src : ['*.js'],
+            dest : 'dist/css/'
+          }
+        ]
+      }
+    },
+
+    clean : {
+      build : {
+        src : ['build']
+      }
+    },
+
+    // Express server
+    express : {
       all: {
         options: {
           // Set your file directory 
@@ -110,40 +202,60 @@ module.exports = function (grunt) {
       }
     },
 
-    watch: {
+    // Open Browser
+    open : {
       all: {
-        files: ['Gruntfile.js', 'scripts/*.js', '*.html'],
-        tasks: ['uglify'],
+        path: 'http://localhost:9000/',
+        app: 'Chrome'
+      }
+    },
+
+    // Watch for file changes
+    watch : {
+      all: {
+        files: [
+          'Gruntfile.js',
+          '*.html'
+        ],
         options: {
           livereload: true
         }
       },
-      css: {
-        files: [
-          'scss/*.scss',
-          'scss/**/*.scss',
-          'scss/**/**/*.scss'
-        ],
-        tasks: ['sass:dev','sass:dist']
-      }
-    },
-
-    open: {
-      all: {
-        path: 'http://localhost:9000/index.html',
-        app: 'Chrome'
+      sass : {
+        files : ['scss/*.scss','scss/**/*.scss','scss/**/**/*.scss'],
+        tasks: ['sass:dev','postcss:dev']
+      },
+      js : {
+        files : ['scripts/*.js'],
+        tasks : ['concat:dev']
       }
     }
   });
 
-  // grunt.loadNpmTasks('grunt-sass');
-  // grunt.loadNpmTasks('grunt-express');
-  // grunt.loadNpmTasks('grunt-contrib-watch');
-  // grunt.loadNpmTasks('grunt-contrib-copy');
-  // grunt.loadNpmTasks('grunt-contrib-uglify');
-  // grunt.loadNpmTasks('grunt-rev');
+  // Developer centric tasks
+  grunt.registerTask('dev', 'Build for development environment', [
+    'sass:dev',
+    'postcss:dev',
+    'concat:dev',
+    'injector',
+    'express',
+    'open',
+    'watch'
+  ]);
 
-  // Establish tasks we can run from the terminal.
-  grunt.registerTask('build', ['sass', 'copy', 'uglify', 'express', 'open']);
-  grunt.registerTask('default', ['build', 'watch']);
+  // build task for production stage
+  grunt.registerTask('build', 'Build for production environment', [
+    'copy',
+    'sass:dist',
+    'concat:dist',
+    'injector',
+    'uglify',
+    'htmlmin',
+    'express',
+    'open'
+  ]);
+
+  // default task for developers
+  grunt.registerTask('default', ['dev']);
+
 };
