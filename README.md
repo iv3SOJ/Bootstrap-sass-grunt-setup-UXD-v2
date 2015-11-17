@@ -47,3 +47,11 @@ Locate your project folder
 example: `C:\Users\Me\MyProject`
 
 and type `grunt`
+
+### Exporting your project
+
+You can export your project by typing the following command:
+
+`grunt dist`
+
+*This will compile your project inside the `dist` folder
