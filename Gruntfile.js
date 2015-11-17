@@ -6,6 +6,11 @@ module.exports = function (grunt) {
   // Setup
   grunt.initConfig({
     pkg: grunt.file.readJSON('config.json'),
+    config : {
+      app : "app",
+      build : "build",
+      dist : "dist"
+    },
 
 
     // Disable caching of files
@@ -30,19 +35,19 @@ module.exports = function (grunt) {
       dev : {
         options: {
           includePaths: ['bower_components/bootstrap-sass/assets/stylesheets'],
-          outputStyle: 'expanded',
-          compress : grunt.config('compress')
+          outputStyle: 'expanded'
         },
         files: {
-          'css/app.css': 'scss/app.scss'
+          '<%= config.build %>/css/app.css': '<%= config.app %>/scss/app.scss'
         }
       },
       dist : {
         options : {
+          includePaths: ['bower_components/bootstrap-sass/assets/stylesheets'],
           outputStyle : 'compressed'
         },
         files : {
-          'dist/css/app.css' : 'scss/app.scss'
+          '<%= config.dist %>/css/app.css' : '<%= config.app %>/scss/app.scss'
         }
       }
     },
@@ -55,7 +60,7 @@ module.exports = function (grunt) {
         // or
         map: {
           inline: false, // save all sourcemaps as separate files...
-          annotation: 'css/maps/' // ...to the specified directory
+          annotation: '<%= config.build %>/css/maps/' // ...to the specified directory
         },
 
         processors: [
@@ -65,10 +70,10 @@ module.exports = function (grunt) {
       ]
       },
       dist: {
-        src: 'dist/css/*.css'
+        src: '<%= config.dist %>/css/*.css'
       },
       dev : {
-        src : 'css/*.css'
+        src : '<%= config.build %>/css/*.css'
       }
     },
 
@@ -79,35 +84,21 @@ module.exports = function (grunt) {
       },
       dist: {
           src : [
-            'bower_components/jquery/dist/jquery.min.js',
-            'bower_components/bootstrap-sass/assets/javascripts/{bootstrap.min,bootstrap-sprockets}.js',
-            'scripts/*.js'
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+            '<%= config.app %>/scripts/*.js'
           ],
-          dest : 'dist/js/app.js',
+          dest : '<%= config.dist %>/js/app.js',
           nosort : false
       },
       dev: {
           src : [
-            'scripts/*.js'
-          ],
-          dest : 'js/app.js',
-          nosort : false
-      }
-    },
-
-
-    // Injector Task
-    injector : {
-      options: { },
-      my_target: {
-        files: {
-          'index.html': [
             'bower_components/jquery/dist/jquery.js',
             'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-            'js/app.js',
-            'css/app.css'
-          ]
-        }
+            '<%= config.app %>/scripts/*.js'
+          ],
+          dest : '<%= config.build %>/js/app.js',
+          nosort : false
       }
     },
 
@@ -118,7 +109,7 @@ module.exports = function (grunt) {
       },
       my_target: {
         files: {
-          'dist/js/app.js': 'dist/js/app.js'
+          '<%= config.dist %>/js/app.js': '<%= config.dist %>/js/app.js'
         }
       }
     },
@@ -131,52 +122,30 @@ module.exports = function (grunt) {
           collapseWhitespace: true
         },
         files: {                                   // Dictionary of files
-          'dist/index.html': 'index.html'
+          '<%= config.dist %>/index.html': '<%= config.dist %>/index.html'
         }
       }
     },
 
     // Copy task
     copy : {
-      // build : {
-      //   cwd : '',
-      //   src : ['**'],
-      //   dest : 'build',
-      //   expand : true
-      // }
-      main: {
-        files: [
-          // Vendor scripts.
+      html : {
+        files : [
           {
-            expand: true,
-            cwd: 'bower_components/bootstrap-sass/assets/',
-            src: ['**/*.js'],
-            dest: 'dist/js/bootstrap/'
-                    },
+            expand : true,
+            cwd : '<%= config.app %>/',
+            src : ['*.html'],
+            dest : '<%= config.build %>/'
+          }
+        ]
+      },
+      html_dist : {
+        files : [
           {
-            expand: true,
-            cwd: 'bower_components/jquery/dist/',
-            src: ['**/*.js', '**/*.map'],
-            dest: 'dist/js/jquery/'
-                    },
-           // Modernizr
-          {
-            expand: true,
-            cwd: 'bower_components/modernizr/',
-            src: ['**/*.js'],
-            dest: 'dist/js/modernizr/'
-                    },
-          {
-            expand: true,
-            cwd : 'js/',
-            src : ['*.js'],
-            dest : 'dist/js/'
-          },
-          {
-            expand: true,
-            cwd : 'css/',
-            src : ['*.js'],
-            dest : 'dist/css/'
+            expand : true,
+            cwd : '<%= config.app %>/',
+            src : ['*.html'],
+            dest : '<%= config.dist %>/'
           }
         ]
       }
@@ -184,7 +153,10 @@ module.exports = function (grunt) {
 
     clean : {
       build : {
-        src : ['build']
+        src : ['<%= config.build %>']
+      },
+      dist : {
+        src : ['<%= config.dist %>']
       }
     },
 
@@ -214,18 +186,19 @@ module.exports = function (grunt) {
       all: {
         files: [
           'Gruntfile.js',
-          '*.html'
+          '<%= config.app %>/*.html'
         ],
+        tasks : ['copy:html'],
         options: {
           livereload: true
         }
       },
       sass : {
-        files : ['scss/*.scss','scss/**/*.scss','scss/**/**/*.scss'],
+        files : ['<%= config.app %>/scss/*.scss','<%= config.app %>/scss/**/*.scss','<%= config.app %>/scss/**/**/*.scss'],
         tasks: ['sass:dev','postcss:dev']
       },
       js : {
-        files : ['scripts/*.js'],
+        files : ['<%= config.app %>/scripts/*.js'],
         tasks : ['concat:dev']
       }
     }
@@ -233,25 +206,24 @@ module.exports = function (grunt) {
 
   // Developer centric tasks
   grunt.registerTask('dev', 'Build for development environment', [
+    'clean:build',
     'sass:dev',
     'postcss:dev',
     'concat:dev',
-    'injector',
+    'copy:html',
     'express',
     'open',
     'watch'
   ]);
 
   // build task for production stage
-  grunt.registerTask('build', 'Build for production environment', [
-    'copy',
+  grunt.registerTask('dist', 'Build for production environment', [
+    'clean:dist',
     'sass:dist',
+    'postcss:dist',
     'concat:dist',
-    'injector',
-    'uglify',
-    'htmlmin',
-    'express',
-    'open'
+    'copy:html_dist',
+    'uglify'
   ]);
 
   // default task for developers
