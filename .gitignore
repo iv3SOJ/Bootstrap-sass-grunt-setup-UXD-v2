@@ -29,5 +29,6 @@ bower_components
 css
 js
 dist
+scss
 prod
 dist
