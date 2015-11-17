@@ -1,0 +1,62 @@
+@import "_bootstrap.scss";
+
+
+
+/** Uncomment to Active **/
+//*Base Folder*//
+//@import "base/mixins";
+//@import "base/typography";
+//@import "base/variables";
+//@import "base/button";
+//@import "base/helpers";
+//End Closing
+
+//*Layout Folder*//
+//@import "layout/header";
+//@import "layout/main-content";
+//@import "layout/sidebar";
+//@import "layout/navigation";
+//@import "layout/footer";
+//@import "layout/pages/home";
+//@import "layout/pages/about-us";
+//@import "layout/pages/contact-us";
+//End Closing
+
+//*Modules Folder*//
+//@import  "modules/sub-navigation";
+//@import  "modules/thumbnail";
+//@import  "modules/panel";
+//@import  "modules/modal";
+//@import  "modules/breadcrumbs";
+//@import  "modules/forms";
+//End Closing
+
+body{
+	text-align:center;
+	background-color:#d8f70a;
+}
+
+h1.title{
+	color:#242618;
+	font-size:72px;
+}
+
+div.content{
+	color:#373a25;
+	border:5px solid #e9081b;
+	border-radius:10px;
+	transition: all .25s;
+	width:60%;
+	margin:auto;
+
+	p{
+		font-size:24px;
+		line-height:2em;
+		column-count: 2;
+		column-gap:20px;
+	}
+}
+
+h1.title, div.content p{
+	text-shadow:0px 1px 1px rgba(255,255,255,0.5);
+}
