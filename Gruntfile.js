@@ -54,26 +54,46 @@ module.exports = function (grunt) {
 
     // Post process CSS files
     postcss : {
-      options: {
-        // map: true, // inline sourcemaps
+      // options: {
+      //   // map: true, // inline sourcemaps
 
-        // or
-        map: {
-          inline: false, // save all sourcemaps as separate files...
-          annotation: '<%= config.app %>/css/maps/' // ...to the specified directory
-        },
+      //   // or
+      //   map: {
+      //     inline: false, // save all sourcemaps as separate files...
+      //     annotation: '<%= config.app %>/css/maps/' // ...to the specified directory
+      //   },
 
-        processors: [
-        require('autoprefixer')({
-            browsers: 'last 2 versions'
-          }) // add vendor prefixes
-      ]
-      },
+      //   processors: [
+      //     require('autoprefixer')({
+      //       browsers: 'last 2 versions'
+      //     }) // add vendor prefixes
+      // ]
+      // },
       dist: {
-        src: '<%= config.dist %>/css/*.css'
+        src: '<%= config.dist %>/css/*.css',
+        options : {
+          processors : [
+            require('autoprefixer')({browsers:'last 2 versions'}), // Add vendor prefixes
+            require('cssnano')() // Minifies CSS
+          ]
+        }
       },
       dev : {
-        src : '<%= config.build %>/css/*.css'
+        src : '<%= config.build %>/css/*.css',
+        options : {
+          processors : [
+            require('autoprefixer')({browsers:'last 2 versions'}) // Add vendor prefixes
+          ]
+        }
+      }
+    },
+
+    // Uncss file for Distributable
+    uncss : {
+      dist : {
+        files : {
+          'dist/css/app.css' : ['build/*.html']
+        }
       }
     },
 
@@ -124,6 +144,27 @@ module.exports = function (grunt) {
         files: {                                   // Dictionary of files
           '<%= config.dist %>/index.html': '<%= config.dist %>/index.html'
         }
+      }
+    },
+
+    imagemin : {
+      options : { optimizationLevel : 6 },
+      dist : {
+        files : [{
+          expand : true,
+          cwd : '<%= config.build %>/assets/images/',
+          src : ['**/*.{png,gif,jpg,jpeg}'],
+          dest : '<%= config.dist %>/assets/images/'
+        }]
+      },
+      dev : {
+        // options : { optimizationLevel : 7 },
+        files : [{
+          expand : true,
+          cwd : '<%= config.app %>/assets/images/',
+          src : ['**/*.{png,gif,jpg,jpeg}'],
+          dest : '<%= config.build %>/assets/images/'
+        }]
       }
     },
 
@@ -205,25 +246,37 @@ module.exports = function (grunt) {
   });
 
   // Developer centric tasks
-  grunt.registerTask('dev', 'Build for development environment', [
-    'clean:build',
-    'sass:dev',
-    'postcss:dev',
-    'concat:dev',
-    'copy:html',
+  grunt.registerTask('dev', 'Build for developers', [
+    'build',
     'express',
     'open',
     'watch'
   ]);
 
-  // build task for production stage
-  grunt.registerTask('dist', 'Build for production environment', [
+  grunt.registerTask('build', 'Build development environment', [
+    'clean:build',
+    'sass:dev',
+    'postcss:dev',
+    'concat:dev',
+    'copy:html',
+    'imagemin:dev'
+  ]);
+
+  grunt.registerTask('production', 'Build for production from dev env', [
     'clean:dist',
     'sass:dist',
+    'uncss',
     'postcss:dist',
     'concat:dist',
     'copy:html_dist',
-    'uglify'
+    'uglify',
+    'imagemin:dist'
+  ]);
+
+  // build task for production stage
+  grunt.registerTask('dist', 'Build for production environment', [
+    'build',
+    'production'
   ]);
 
   // default task for developers
