@@ -55,3 +55,14 @@ You can export your project by typing the following command:
 `grunt dist`
 
 *This will compile your project inside the `dist` folder
+
+
+### Important Notes
+
+All the files that you will be working on should be inside the `app` folder
+
+When you run `grunt` on your project, grunt will compile and build your project to `build` folder.
+
+Next, grunt will open the browser for you to see the preview of your project.
+
+using the `watch` feature, grunt will be watching for changes that you make inside `app` folder and automagically compiles them to our `build` folder and reloads the page for preview.
