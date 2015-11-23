@@ -13,9 +13,9 @@
     <section class="page-header">
       <h1 class="project-name">Bootstrap-sass-grunt-setup-uxd</h1>
       <h2 class="project-tagline">Bootstrap sass grunt setup</h2>
-      <a href="https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD" class="btn">View on GitHub</a>
-      <a href="https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD/tarball/master" class="btn">Download .tar.gz</a>
+      <a href="https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD-v1.2" class="btn">View on GitHub</a>
+      <a href="https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD-v1.2/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD-v1.2/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
@@ -27,13 +27,13 @@
 <h2>
 <a id="initial-setup" class="anchor" href="#initial-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initial Setup</h2>
 
-<p><a href="https://nodejs.org/en/download/"><strong><em>Install Nodejs</em></strong></a></p>
-
 <p>Download Node v4.2.2 LTS Windows Installer (.msi) select windows bit version 32-bit/64-bit</p>
 
-<p><a href="https://git-scm.com/downloads"><strong><em>Install Git</em></strong></a></p>
+<p><a href="https://nodejs.org/en/download/"><strong><em>Nodejs Installer</em></strong></a></p>
 
 <p>Download Latest version and install Git.</p>
+
+<p><a href="https://git-scm.com/downloads"><strong><em>Git Installer</em></strong></a></p>
 
 <p><strong>Add Path Setup</strong></p>
 
@@ -62,48 +62,33 @@
 <h2>
 <a id="project-setup" class="anchor" href="#project-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Project Setup</h2>
 
-<p>Inside the command prompt or Git Bash, navigate to your project folder directory:</p>
-
-<p><code>cd C:\Users\Me\MyProject</code></p>
-
-<p>and type the following commands:</p>
-
-<p><code>bower init</code></p>
-
-<p>After this command you are required to enter information / details regarding the project. Feel free to fill it up or not.</p>
-
-<p><code>bower install bootstrap-sass --save</code></p>
-
-<p>This commands are used to initialise bower inside your project folder (which in this case is <strong>MyProject</strong>) also to include bootstrap sass on the project.</p>
-
-<p><code>npm init</code></p>
-
-<p>After this command you are required to enter information / details regarding the project. Feel free to fill it up or not.</p>
-
-<p>Next, we create the necessary folders for our development.</p>
-
 <ul>
-<li><code>mkdir js</code></li>
-<li><code>mkdir css</code></li>
-<li><code>mkdir scripts</code></li>
-<li><code>mkdir scss</code></li>
-</ul>
-
-<p>or Create the following folders inside <strong>MyProject.</strong></p>
-
-<ul>
-<li>js</li>
-<li>scss</li>
-<li>scripts</li>
-<li>scss</li>
+<li>Download Zip file</li>
+<li>Set path where will you create project folder </li>
+<li>Rename project folder </li>
+<li>Open Command Prompt or Git Bash and Navigate your project folder directory.  ex.(<code>cd C:\Users\Name\MyProject</code>)</li>
 </ul>
 
 <h2>
-<a id="grunt-setup" class="anchor" href="#grunt-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Grunt Setup</h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
-<p>Next, we need to install grunt and all the required modules / plugins that we need.</p>
+<p>Open config.json using notepad</p>
 
-<p><code>npm install grunt</code></p>
+<p>Change the value of "location" to the directory of your project.</p>
+
+<p>ex. <code>{ "location" : "C:\\Users\\Me\\MyProject" }</code></p>
+
+<p><em>use double back slashes (\\) to escape the backslash string</em></p>
+
+<h2>
+<a id="bower-installation" class="anchor" href="#bower-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bower Installation</h2>
+
+<p>type <code>bower install</code> this will install all components dependencies that are listed inside your <strong>bower.json</strong> (ex: bootstrap, jQuery, normalize, ) .</p>
+
+<h2>
+<a id="grunt-installation" class="anchor" href="#grunt-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Grunt Installation</h2>
+
+<p>type <code>npm install</code> this will install all node modules dependencies that are listed inside your <strong>package.json.</strong></p>
 
 <p><em><strong>setup for package.json devDependencies grunt file.</strong></em></p>
 
@@ -390,7 +375,7 @@
 <p><strong>You are successfully run sass! Good job!!!</strong></p>
 
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD">Bootstrap-sass-grunt-setup-uxd</a> is maintained by <a href="https://github.com/iv3SOJ">iv3SOJ</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD-v1.2">Bootstrap-sass-grunt-setup-uxd</a> is maintained by <a href="https://github.com/iv3SOJ">iv3SOJ</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
