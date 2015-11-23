@@ -3,6 +3,9 @@ module.exports = function (grunt) {
   // Run all dependencies that starts with "grunt-"
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
   require('time-grunt')(grunt);
+
+  var mozjpeg = require('imagemin-mozjpeg');
+
   // Setup
   grunt.initConfig({
     pkg: grunt.file.readJSON('config.json'),
@@ -148,7 +151,11 @@ module.exports = function (grunt) {
     },
 
     imagemin : {
-      options : { optimizationLevel : 6 },
+      options : {
+        optimizationLevel : 6,
+        svgoPlugins: [{ removeViewBox: false }],
+        use: [mozjpeg()]
+      },
       dist : {
         files : [{
           expand : true,
