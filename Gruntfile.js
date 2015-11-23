@@ -2,7 +2,7 @@ module.exports = function (grunt) {
 
   // Run all dependencies that starts with "grunt-"
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
+  require('time-grunt')(grunt);
   // Setup
   grunt.initConfig({
     pkg: grunt.file.readJSON('config.json'),
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
         // or
         map: {
           inline: false, // save all sourcemaps as separate files...
-          annotation: '<%= config.build %>/css/maps/' // ...to the specified directory
+          annotation: '<%= config.app %>/css/maps/' // ...to the specified directory
         },
 
         processors: [
@@ -165,7 +165,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           // Set your file directory 
-          bases : ['<%= pkg.location %>'],
+          bases : ['<%= pkg.location %>/<%= config.build %>'],
           port: 9000,
           hostname: "0.0.0.0",
           livereload: true
