@@ -10,7 +10,7 @@ click [Download Zip file](https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-U
 
 ## Project Setup
 
-* Open Command Prompt or Git Bash and Navigate your project folder directory.  ex.(`cd C:\xampp\htdocs`)
+* Open Command Prompt or Git Bash and Navigate your project folder directory.  ex.(`cd C:\Users\Document`)
 * Type this in your Command Prompt or Git bash to download the file (`git clone https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD-v2.git MyProjectName`) 
 
 
@@ -21,7 +21,7 @@ Open config.json using notepad
 
 Change the value of "location" to the directory of your project.
 
-ex. `{ "location" : "C:\\xampp\\htdocs\\MyProjectName\\" }`
+ex. `{ "location" : "C:\\Users\\Document\\MyProjectName\\" }`
 
 *use double back slashes (\\\\) to escape the backslash string*
 
@@ -43,7 +43,7 @@ To view your project, just open your Command Prompt or Git Bash
 
 Locate your project folder
 
-example: `C:\Users\Me\MyProject`
+example: `C:\Users\Document\MyProjectName`
 
 and type `grunt`
 
