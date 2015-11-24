@@ -10,10 +10,9 @@ click [Download Zip file](https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-U
 
 ## Project Setup
 
-* Download Zip file
-* Set path where will you create project folder 
-* Rename project folder 
-* Open Command Prompt or Git Bash and Navigate your project folder directory.  ex.(`cd C:\Users\Name\MyProject`)
+* Open Command Prompt or Git Bash and Navigate your project folder directory.  ex.(`cd C:\xampp\htdocs`)
+* Type this in your Command Prompt or Git bash to download the file (`git clone https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD-v2.git MyProjectName`) 
+
 
 
 ## Configuration
