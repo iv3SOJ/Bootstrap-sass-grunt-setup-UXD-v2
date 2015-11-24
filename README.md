@@ -21,7 +21,7 @@ Open config.json using notepad
 
 Change the value of "location" to the directory of your project.
 
-ex. `{ "location" : "C:\\Users\\Me\\MyProject" }`
+ex. `{ "location" : "C:\\xampp\\htdocs\\MyProjectName\\" }`
 
 *use double back slashes (\\\\) to escape the backslash string*
 
