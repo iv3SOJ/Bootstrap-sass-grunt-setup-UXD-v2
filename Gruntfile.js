@@ -182,7 +182,7 @@ module.exports = function (grunt) {
           {
             expand : true,
             cwd : '<%= config.app %>/',
-            src : ['*.html'],
+            src : ['*.html','**/**/*.{js,css,eot,ttf,otf,woff,woff2}'],
             dest : '<%= config.build %>/'
           }
         ]
@@ -192,28 +192,8 @@ module.exports = function (grunt) {
           {
             expand : true,
             cwd : '<%= config.app %>/',
-            src : ['*.html'],
+            src : ['*.html','**/**/*.{js,css,eot,ttf,otf,woff,woff2}'],
             dest : '<%= config.dist %>/'
-          }
-        ]
-      },
-      vendor : {
-        files : [
-          {
-            expand : true,
-            cwd : '<%= config.app %>/vendor/',
-            src : ['**/**/*.{js,css,eot,ttf,otf,woff,woff2}'],
-            dest : '<%= config.build %>/vendor/'
-          }
-        ]
-      },
-      vendor_dist : {
-        files : [
-          {
-            expand : true,
-            cwd : '<%= config.app %>/vendor/',
-            src : ['**/**/*.{js,css,eot,ttf,otf,woff,woff2}'],
-            dest : '<%= config.dist %>/vendor/'
           }
         ]
       }
@@ -286,7 +266,6 @@ module.exports = function (grunt) {
     'postcss:dev',
     'concat:dev',
     'copy:html',
-    'copy:vendor',
     'imagemin:dev'
   ]);
 
@@ -297,7 +276,6 @@ module.exports = function (grunt) {
     'postcss:dist',
     'concat:dist',
     'copy:html_dist',
-    'copy:vendor_dist',
     'uglify',
     'imagemin:dist'
   ]);
