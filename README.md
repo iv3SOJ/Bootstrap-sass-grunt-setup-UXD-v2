@@ -8,6 +8,31 @@ click here  [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.githu
 click [Download Zip file](https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD/zipball/master)
 
 
+## Initial Setup
+
+If you don't have Nodejs installed in your machine do not fret, we're here to do that lol.
+
+**Installing Nodejs**
+
+[click here](http://nodejs.org/en/download/)
+
+_Download Node v4.2.2 LTS Windows Installer (.msi) select windows bit version 32-bit/64-bit_
+
+**Installing Git**
+
+[click here](http://git-scm.com/downloads)
+
+_Download Latest version and install Git_
+
+Next, you need to add the npm (node package manager) in the PATH.
+
+The purpose of this is that you won't have problems when installing global plugins / components using npm.
+
+To do this one must:
+
+![Step 1](https://drive.google.com/a/egg.ph/file/d/0B5CtIqS0rehwRkJJWU11aFBoMk0/view?usp=sharing)
+
+
 ## Project Setup
 
 * Open Command Prompt or Git Bash and Navigate your project folder directory.  ex.(`cd C:\Users\Document`)
