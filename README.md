@@ -36,34 +36,32 @@ To do this one must:
 
 * click **Advanced system settings**
 
-* ![Step 1](http://s30.postimg.org/lx55z2zld/1st.jpg)
+* ![Step 1](http://s12.postimg.org/beofw58jh/1st.jpg)
 
 * in the **Advanced** tab click **Environment Variables**
 
-* ![Step 2](http://s30.postimg.org/yyquoxnzl/2nd.jpg)
+* ![Step 2](http://s12.postimg.org/fl4oxqirh/2nd.jpg)
 
 * in **System Variables** find and click on **Path** then click **Edit** button
 
-* ![Step 3](http://s30.postimg.org/my5eo7gkx/3rd.jpg)
+* ![Step 3](http://s12.postimg.org/m08b85ev1/3rd.jpg)
 
 * inside **Variable** value add `;C:\Program Files\nodejs;C:\Users\**User Name**\AppData\Roaming\npm;`
 
-* ![Step 4](http://s30.postimg.org/439nxsgj5/4th.jpg)
+* ![Step 4](http://s12.postimg.org/w7m96tbp9/4th.jpg)
 
 * click **Ok** and you're done! such Wow! so Setup! much Path!
 
 
 **We can now install now install our bower and grunt command line interface globally**
 
-To do this:
-
 Type `npm install -g bower` and wait for the installation to finish
 
-__This installation of bower is the one we will use to get our bootstrap sass plugin later__
+_This installation of bower is the one we will use to get our bootstrap sass plugin later_
 
 Type  `npm install -g grunt-cli` and wait again for the installation
 
-__This enables us to use grunt anywhere in our computer, Thanks to the **PATH** yey!__
+_This enables us to use grunt anywhere in our computer, Thanks to the **PATH** yey!_
 
 
 
