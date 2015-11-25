@@ -24,13 +24,16 @@ _Download Node v4.2.2 LTS Windows Installer (.msi) select windows bit version 32
 
 _Download Latest version and install Git_
 
-Next, you need to add the npm (node package manager) in the PATH.
+Next, you need to add the npm (node package manager) in the **PATH**.
 
 The purpose of this is that you won't have problems when installing global plugins / components using npm.
 
 To do this one must:
 
-![Step 1](https://drive.google.com/a/egg.ph/file/d/0B5CtIqS0rehwRkJJWU11aFBoMk0/view?usp=sharing)
+![Step 1](http://s30.postimg.org/lx55z2zld/1st.jpg)
+![Step 2](http://s30.postimg.org/yyquoxnzl/2nd.jpg)
+![Step 3](http://s30.postimg.org/my5eo7gkx/3rd.jpg)
+![Step 4](http://s30.postimg.org/439nxsgj5/4th.jpg)
 
 
 ## Project Setup
