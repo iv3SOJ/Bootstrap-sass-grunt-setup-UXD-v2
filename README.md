@@ -1,6 +1,6 @@
 # Bootstrap-sass-grunt-setup-UXD
 
-click here  [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD-v1.2/)
+click here  [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD-v2/)
 
 
 ## Download
@@ -10,10 +10,9 @@ click [Download Zip file](https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-U
 
 ## Project Setup
 
-* Download Zip file
-* Set path where will you create project folder 
-* Rename project folder 
-* Open Command Prompt or Git Bash and Navigate your project folder directory.  ex.(`cd C:\Users\Name\MyProject`)
+* Open Command Prompt or Git Bash and Navigate your project folder directory.  ex.(`cd C:\Users\Document`)
+* Type this in your Command Prompt or Git bash to download the file (`git clone https://github.com/iv3SOJ/Bootstrap-sass-grunt-setup-UXD-v2.git MyProjectName`) 
+
 
 
 ## Configuration
@@ -22,7 +21,7 @@ Open config.json using notepad
 
 Change the value of "location" to the directory of your project.
 
-ex. `{ "location" : "C:\\Users\\Me\\MyProject" }`
+ex. `{ "location" : "C:\\Users\\Document\\MyProjectName\\" }`
 
 *use double back slashes (\\\\) to escape the backslash string*
 
@@ -44,7 +43,7 @@ To view your project, just open your Command Prompt or Git Bash
 
 Locate your project folder
 
-example: `C:\Users\Me\MyProject`
+example: `C:\Users\Document\MyProjectName`
 
 and type `grunt`
 
