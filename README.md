@@ -1,6 +1,6 @@
 # Bootstrap-sass-grunt-setup-UXD
 
-click here  [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD-v1.2/)
+click here  [Bootstrap-sass grunt setup - UXD Documentation](http://iv3soj.github.io/Bootstrap-sass-grunt-setup-UXD-v2/)
 
 
 ## Download
