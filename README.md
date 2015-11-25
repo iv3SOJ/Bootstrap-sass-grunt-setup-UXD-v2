@@ -46,7 +46,7 @@ To do this one must:
 
 * ![Step 3](http://s12.postimg.org/m08b85ev1/3rd.jpg)
 
-* inside **Variable** value add `;C:\Program Files\nodejs;C:\Users\**User Name**\AppData\Roaming\npm;`
+* inside **Variable** value add `;C:\Program Files\nodejs;C:\Users\`**`User Name`**`\AppData\Roaming\npm;`
 
 * ![Step 4](http://s12.postimg.org/w7m96tbp9/4th.jpg)
 
