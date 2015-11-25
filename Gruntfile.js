@@ -248,6 +248,10 @@ module.exports = function (grunt) {
       js : {
         files : ['<%= config.app %>/scripts/*.js'],
         tasks : ['concat:dev']
+      },
+      images : {
+        files : ['<%= config.app %>/assets/**/*.{jpg,png,gif,jpeg}'],
+        tasks : ['imagemin:dev']
       }
     }
   });
