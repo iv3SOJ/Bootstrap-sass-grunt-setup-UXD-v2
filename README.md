@@ -30,27 +30,27 @@ The purpose of this is that you won't have problems when installing global plugi
 
 To do this one must:
 
-click **Start** button
+* click **Start** button
 
-right click **Computer** and select **Properties**
+* right click **Computer** and select **Properties**
 
-click **Advanced system settings**
+* click **Advanced system settings**
 
-![Step 1](http://s30.postimg.org/lx55z2zld/1st.jpg)
+* ![Step 1](http://s30.postimg.org/lx55z2zld/1st.jpg)
 
-in the **Advanced** tab click **Environment Variables**
+* in the **Advanced** tab click **Environment Variables**
 
-![Step 2](http://s30.postimg.org/yyquoxnzl/2nd.jpg)
+* ![Step 2](http://s30.postimg.org/yyquoxnzl/2nd.jpg)
 
-in **System Variables** find and click on **Path** then click **Edit** button
+* in **System Variables** find and click on **Path** then click **Edit** button
 
-![Step 3](http://s30.postimg.org/my5eo7gkx/3rd.jpg)
+* ![Step 3](http://s30.postimg.org/my5eo7gkx/3rd.jpg)
 
-inside **Variable** value add `;C:\Program Files\nodejs;C:\Users\**User Name**\AppData\Roaming\npm;`
+* inside **Variable** value add `;C:\Program Files\nodejs;C:\Users\**User Name**\AppData\Roaming\npm;`
 
-![Step 4](http://s30.postimg.org/439nxsgj5/4th.jpg)
+* ![Step 4](http://s30.postimg.org/439nxsgj5/4th.jpg)
 
-click **Ok** and you're done! such Wow! so Setup! much Path!
+* click **Ok** and you're done! such Wow! so Setup! much Path!
 
 
 **We can now install now install our bower and grunt command line interface globally**
