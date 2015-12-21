@@ -11,10 +11,8 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('config.json'),
     config : {
       app : "app",
-      build : "build",
       dist : "dist"
     },
-
 
     // Disable caching of files
     rev : {
@@ -26,8 +24,12 @@ module.exports = function (grunt) {
       assets: {
         files: [{
           src: [
-            'js/*.js',
-            'css/*.css'
+            '<%= config.app %>/*.json',
+            '<%= config.app %>/assets/images/*.{png,jpg,jpeg,gif}',
+            '<%= config.app %>/js/*.js',
+            '<%= config.app %>/css/*.css',
+            '<%= config.dist %>/js/*.js',
+            '<%= config.dist %>/css/*.css'
           ]
         }]
       }
@@ -35,105 +37,98 @@ module.exports = function (grunt) {
 
     // SASS compilation
     sass : {
-      dev : {
+      bootstrap : {
         options: {
           includePaths: ['bower_components/bootstrap-sass/assets/stylesheets'],
           outputStyle: 'expanded'
         },
-        files: {
-          '<%= config.build %>/css/app.css': '<%= config.app %>/scss/app.scss'
+        files : {
+          '<%= config.app %>/css/bootstrap.css': '<%= config.app %>/scss/bootstrap.scss'
         }
       },
-      dist : {
-        options : {
-          includePaths: ['bower_components/bootstrap-sass/assets/stylesheets'],
-          outputStyle : 'compressed'
-        },
-        files : {
-          '<%= config.dist %>/css/app.css' : '<%= config.app %>/scss/app.scss'
+      app : {
+        files: {
+          '<%= config.app %>/css/app.css': '<%= config.app %>/scss/app.scss'
         }
       }
     },
 
     // Post process CSS files
     postcss : {
-      dist: {
-        src: '<%= config.dist %>/css/*.css',
-        options : {
-          processors : [
-            require('autoprefixer')({browsers:'last 2 versions'}), // Add vendor prefixes
-            require('cssnano')() // Minifies CSS
-          ]
-        }
+      bootstrap: {
+        src: '<%= config.app %>/css/bootstrap.css',
+        options : { processors : [require('autoprefixer')({browsers:'last 2 versions'}) ] }
       },
-      dev : {
-        src : '<%= config.build %>/css/*.css',
-        options : {
-          processors : [
-            require('autoprefixer')({browsers:'last 2 versions'}) // Add vendor prefixes
-          ]
-        }
+
+      app: {
+        src: '<%= config.app %>/css/app.css',
+        options : { processors : [require('autoprefixer')({browsers:'last 2 versions'}) ] }
+      },
+
+      dist : {
+        src : '<%= config.dist %>/css/*.css',
+        options: { processors : [ require('cssnano')() ] }
       }
     },
 
     // Uncss file for Distributable
-    uncss : {
-      dist : {
-        files : {
-          'dist/css/app.css' : ['build/*.html']
-        }
-      }
-    },
+    // uncss : {
+    //   dist : {
+    //     files : {
+    //       'dist/css/app.css' : ['build/*.html']
+    //     }
+    //   }
+    // },
 
-    // Concat JS
-    concat : {
-      options : {
-        separator : ';'
-      },
-      dist: {
-          src : [
-            'bower_components/jquery/dist/jquery.js',
-            'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-            '<%= config.app %>/scripts/*.js'
-          ],
-          dest : '<%= config.dist %>/js/app.js',
-          nosort : false
-      },
-      dev: {
-          src : [
-            'bower_components/jquery/dist/jquery.js',
-            'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-            '<%= config.app %>/scripts/*.js'
-          ],
-          dest : '<%= config.build %>/js/app.js',
-          nosort : false
-      }
-    },
+    // // Concat JS
+    // concat : {
+    //   options : {
+    //     separator : ';'
+    //   },
+    //   dist: {
+    //       src : [
+    //         'bower_components/jquery/dist/jquery.js',
+    //         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+    //         '<%= config.app %>/scripts/*.js'
+    //       ],
+    //       dest : '<%= config.dist %>/js/app.js',
+    //       nosort : false
+    //   },
+    //   dev: {
+    //       src : [
+    //         'bower_components/jquery/dist/jquery.js',
+    //         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+    //         '<%= config.app %>/scripts/*.js'
+    //       ],
+    //       dest : '<%= config.build %>/js/app.js',
+    //       nosort : false
+    //   }
+    // },
 
-    // Uglify JS files
-    uglify : {
-      options: {
-        mangle: false
-      },
-      my_target: {
-        files: {
-          '<%= config.dist %>/js/app.js': '<%= config.dist %>/js/app.js'
-        }
-      }
-    },
+    // // Uglify JS files
+    // uglify : {
+    //   options: {
+    //     mangle: false
+    //   },
+    //   my_target: {
+    //     files: {
+    //       '<%= config.dist %>/js/app.js': '<%= config.dist %>/js/app.js'
+    //     }
+    //   }
+    // },
 
-    // HTML minification
-    htmlmin : {
-      dist: {                                      // Target
-        options: {                                 // Target options
-          removeComments: true,
-          collapseWhitespace: true
-        },
-        files: {                                   // Dictionary of files
-          '<%= config.dist %>/index.html': '<%= config.dist %>/index.html'
-        }
-      }
-    },
+    // // HTML minification
+    // htmlmin : {
+    //   dist: {                                      // Target
+    //     options: {                                 // Target options
+    //       removeComments: true,
+    //       collapseWhitespace: true
+    //     },
+    //     files: {                                   // Dictionary of files
+    //       '<%= config.dist %>/index.html': '<%= config.dist %>/index.html'
+    //     }
+    //   }
+    // },
 
     imagemin : {
       options : {
@@ -144,7 +139,7 @@ module.exports = function (grunt) {
       dist : {
         files : [{
           expand : true,
-          cwd : '<%= config.build %>/assets/images/',
+          cwd : '<%= config.app %>/assets/images/',
           src : ['**/*.{png,gif,jpg,jpeg}'],
           dest : '<%= config.dist %>/assets/images/'
         }]
@@ -162,22 +157,38 @@ module.exports = function (grunt) {
 
     // Copy task
     copy : {
+      bootstrap_fonts : {
+        files : [
+          {
+            expand : true,
+            cwd : 'bower_components/bootstrap-sass/assets/fonts/',
+            src : ['**/*'],
+            dest : '<%= config.app %>/fonts/'
+          }
+        ]
+      },
+      js : {
+        files : [
+          {
+            expand : true,
+            cwd : 'bower_components/bootstrap-sass/assets/javascripts/',
+            src : ['bootstrap.min.js'],
+            dest : '<%= config.app %>/js/'
+          },
+          {
+            expand : true,
+            cwd : 'bower_components/jquery/dist/',
+            src : ['jquery.min.js'],
+            dest : '<%= config.app %>/js/'
+          }
+        ]
+      },
       html : {
         files : [
           {
             expand : true,
             cwd : '<%= config.app %>/',
-            src : ['*.html','**/**/*.{js,css,eot,ttf,otf,woff,woff2}'],
-            dest : '<%= config.build %>/'
-          }
-        ]
-      },
-      html_dist : {
-        files : [
-          {
-            expand : true,
-            cwd : '<%= config.app %>/',
-            src : ['*.html','**/**/*.{js,css,eot,ttf,otf,woff,woff2}'],
+            src : ['*.html','fonts/{**/**/*,*}','js/app.js','css/app.css','assets/images/*'],
             dest : '<%= config.dist %>/'
           }
         ]
@@ -185,12 +196,76 @@ module.exports = function (grunt) {
     },
 
     clean : {
-      build : {
-        src : ['<%= config.build %>']
-      },
-      dist : {
-        src : ['<%= config.dist %>']
+      dist : { src : ['<%= config.dist %>'] },
+      tmp : { src : ['.tmp'] }
+    },
+
+    // cssUrls: {
+    //     src:  '<%= config.app %>/css/bundle.css'
+    // },
+
+    // cssmin: {
+    //     all: {
+    //         dest: '<%= config.app %>/css/app.css',
+    //         src: function () {
+    //             var content = grunt.file.read('app/css/bundle.css').toString();
+    //             var files = [];
+
+    //             content.replace(/@import\s+'([^']+)/gim, function(match, location, a) {
+    //                 files.push(path.resolve('app/css/' + location));
+    //             });
+
+    //             return files;
+    //         }()
+    //     }
+    // },
+
+    // injector: {
+    //   options: {},
+    //   local_dependencies: {
+    //     files: {
+    //       '<%= config.dist %>/index.html': ['<%= config.dist %>/js/app.js', '<%= config.dist %>/css/app.css'],
+    //     }
+    //   }
+    // },
+
+    // css_url_replace: {
+    //   options: {
+    //     staticRoot: ''
+    //   },
+    //   replace: {
+    //     files: {
+    //       '<%= config.dist %>/css/app.css': ['<%= config.dist %>/css/app.css']
+    //     }
+    //   }
+    // },
+
+
+    // Usemin
+    // Reads HTML for usemin blocks to enable smart builds that automatically
+    // concat, minify and revision files. Creates configurations in memory so
+    // additional tasks can operate on them
+    useminPrepare : {
+      html : '<%= config.app %>/*.html',
+      options : {
+        dest : '<%= config.dist %>'
       }
+    },
+
+    // Performs rewrites based on rev and the useminPrepare configuration
+    usemin: {
+        options: {
+            assetsDirs: [
+                '<%= config.dist %>',
+                '<%= config.dist %>/assets/images',
+                '<%= config.dist %>/css',
+                '<%= config.dist %>/js',
+                '<%= config.dist %>/vendor'
+            ]
+        },
+        html: ['<%= config.dist %>/**/*.html'],
+        js: ['<%= config.dist %>/js/*.js'],
+        css: ['<%= config.dist %>/css/*.css']
     },
 
     // Express server
@@ -198,7 +273,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           // Set your file directory 
-          bases : ['<%= pkg.location %>/<%= config.build %>'],
+          bases : ['<%= pkg.location %>'],
           port: 9000,
           hostname: "0.0.0.0",
           livereload: true
@@ -219,24 +294,26 @@ module.exports = function (grunt) {
       all: {
         files: [
           'Gruntfile.js',
-          '<%= config.app %>/*.html'
+          '<%= config.app %>/*.html',
+          '<%= config.app %>/js/*.js',
+          '<%= config.app %>/assets/**/*.{jpg,png,gif,jpeg}'
         ],
-        tasks : ['copy:html'],
         options: {
           livereload: true
         }
       },
-      sass : {
-        files : ['<%= config.app %>/scss/*.scss','<%= config.app %>/scss/**/*.scss','<%= config.app %>/scss/**/**/*.scss'],
-        tasks: ['sass:dev','postcss:dev']
+      boostrap_sass : {
+        files : [
+          '<%= config.app %>/scss/bootstrap.scss'
+        ],
+        tasks : ['sass:bootstrap','postcss:bootstrap']
       },
-      js : {
-        files : ['<%= config.app %>/scripts/*.js'],
-        tasks : ['concat:dev']
-      },
-      images : {
-        files : ['<%= config.app %>/assets/**/*.{jpg,png,gif,jpeg}'],
-        tasks : ['imagemin:dev']
+      app_sass : {
+        files: [
+          '<%= config.app %>/scss/{*,**/*,**/**/*}.scss',
+          '!<%= config.app %>/scss/bootstrap.scss'
+        ],
+        tasks: ['sass:app','postcss:app']
       }
     }
   });
@@ -250,29 +327,35 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', 'Build development environment', [
-    'clean:build',
-    'sass:dev',
-    'postcss:dev',
-    'concat:dev',
-    'copy:html',
-    'imagemin:dev'
+    'copy:bootstrap_fonts',
+    'copy:js',
+    'sass',
+    'postcss:bootstrap',
+    'postcss:app'
   ]);
 
-  grunt.registerTask('production', 'Build for production from dev env', [
-    'clean:dist',
-    'sass:dist',
-    'uncss',
-    'postcss:dist',
-    'concat:dist',
-    'copy:html_dist',
-    'uglify',
-    'imagemin:dist'
-  ]);
-
-  // build task for production stage
   grunt.registerTask('dist', 'Build for production environment', [
+    'clean:dist',
     'build',
-    'production'
+    'useminPrepare',
+    'copy:html',
+    'imagemin:dist',
+    'concat:generated',
+    // 'cssUrls',
+    // 'cssmin',
+    'cssmin:generated',
+    // 'css_url_replace',
+    'uglify:generated',
+    // 'filerev',
+    'usemin',
+    // 'postcss:dist',
+    // 'uncss',
+    // 'concat:dist',
+    // 'copy:html_dist',
+    // 'uglify',
+    // 'imagemin:dist',
+    // 'injector'
+    'clean:tmp'
   ]);
 
   // default task for developers

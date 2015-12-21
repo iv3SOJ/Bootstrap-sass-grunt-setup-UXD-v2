@@ -1,16 +1,19 @@
 {
-  "name": "Bootstrap setup",
+  "name": "New",
+  "description": "New",
+  "main": "index.js",
   "authors": [
-    "ivjose <ivjosesantos@gmail.com>"
+    "jarvinm <mito.jan_arvin@yahoo.com>"
   ],
-  "description": "initial",
-  "main": "test",
-  "moduleType": [],
+  "license": "ISC",
   "keywords": [
-    "test"
+    "New"
   ],
-  "license": "MIT",
-  "homepage": "yondu.com",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -18,10 +21,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "bootstrap-sass": "~3.3.5"
-  },
   "devDependencies": {
-    "bootstrap-sass": "~3.3.5"
+    "bootstrap-sass": "~3.3.6"
   }
 }
