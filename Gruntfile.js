@@ -37,16 +37,11 @@ module.exports = function (grunt) {
 
     // SASS compilation
     sass : {
-      bootstrap : {
+      app : {
         options: {
           includePaths: ['bower_components/bootstrap-sass/assets/stylesheets'],
           outputStyle: 'expanded'
         },
-        files : {
-          '<%= config.app %>/css/bootstrap.css': '<%= config.app %>/scss/03-generic/bootstrap.scss'
-        }
-      },
-      app : {
         files: {
           '<%= config.app %>/css/app.css': '<%= config.app %>/scss/app.scss'
         }
@@ -55,10 +50,6 @@ module.exports = function (grunt) {
 
     // Post process CSS files
     postcss : {
-      bootstrap: {
-        src: '<%= config.app %>/css/bootstrap.css',
-        options : { processors : [require('autoprefixer')({browsers:'last 2 versions'}) ] }
-      },
 
       app: {
         src: '<%= config.app %>/css/app.css',
@@ -204,16 +195,10 @@ module.exports = function (grunt) {
           livereload: true
         }
       },
-      boostrap_sass : {
-        files : [
-          '<%= config.app %>/scss/bootstrap.scss'
-        ],
-        tasks : ['sass:bootstrap','postcss:bootstrap']
-      },
       app_sass : {
         files: [
           '<%= config.app %>/scss/{*,**/*,**/**/*}.scss',
-          '!<%= config.app %>/scss/bootstrap.scss'
+          '!<%= config.app %>/scss/03-generic/bootstrap.scss'
         ],
         tasks: ['sass:app','postcss:app']
       }
@@ -232,7 +217,7 @@ module.exports = function (grunt) {
     'copy:bootstrap_fonts',
     'copy:js',
     'sass',
-    'postcss:bootstrap',
+//    'postcss:bootstrap',
     'postcss:app'
   ]);
 
