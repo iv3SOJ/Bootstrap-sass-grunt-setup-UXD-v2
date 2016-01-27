@@ -43,7 +43,7 @@ module.exports = function (grunt) {
           outputStyle: 'expanded'
         },
         files : {
-          '<%= config.app %>/css/bootstrap.css': '<%= config.app %>/scss/bootstrap.scss'
+          '<%= config.app %>/css/bootstrap.css': '<%= config.app %>/scss/03-generic/bootstrap.scss'
         }
       },
       app : {
@@ -71,64 +71,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Uncss file for Distributable
-    // uncss : {
-    //   dist : {
-    //     files : {
-    //       'dist/css/app.css' : ['build/*.html']
-    //     }
-    //   }
-    // },
-
-    // // Concat JS
-    // concat : {
-    //   options : {
-    //     separator : ';'
-    //   },
-    //   dist: {
-    //       src : [
-    //         'bower_components/jquery/dist/jquery.js',
-    //         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-    //         '<%= config.app %>/scripts/*.js'
-    //       ],
-    //       dest : '<%= config.dist %>/js/app.js',
-    //       nosort : false
-    //   },
-    //   dev: {
-    //       src : [
-    //         'bower_components/jquery/dist/jquery.js',
-    //         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-    //         '<%= config.app %>/scripts/*.js'
-    //       ],
-    //       dest : '<%= config.build %>/js/app.js',
-    //       nosort : false
-    //   }
-    // },
-
-    // // Uglify JS files
-    // uglify : {
-    //   options: {
-    //     mangle: false
-    //   },
-    //   my_target: {
-    //     files: {
-    //       '<%= config.dist %>/js/app.js': '<%= config.dist %>/js/app.js'
-    //     }
-    //   }
-    // },
-
-    // // HTML minification
-    // htmlmin : {
-    //   dist: {                                      // Target
-    //     options: {                                 // Target options
-    //       removeComments: true,
-    //       collapseWhitespace: true
-    //     },
-    //     files: {                                   // Dictionary of files
-    //       '<%= config.dist %>/index.html': '<%= config.dist %>/index.html'
-    //     }
-    //   }
-    // },
 
     imagemin : {
       options : {
@@ -199,46 +141,6 @@ module.exports = function (grunt) {
       dist : { src : ['<%= config.dist %>'] },
       tmp : { src : ['.tmp'] }
     },
-
-    // cssUrls: {
-    //     src:  '<%= config.app %>/css/bundle.css'
-    // },
-
-    // cssmin: {
-    //     all: {
-    //         dest: '<%= config.app %>/css/app.css',
-    //         src: function () {
-    //             var content = grunt.file.read('app/css/bundle.css').toString();
-    //             var files = [];
-
-    //             content.replace(/@import\s+'([^']+)/gim, function(match, location, a) {
-    //                 files.push(path.resolve('app/css/' + location));
-    //             });
-
-    //             return files;
-    //         }()
-    //     }
-    // },
-
-    // injector: {
-    //   options: {},
-    //   local_dependencies: {
-    //     files: {
-    //       '<%= config.dist %>/index.html': ['<%= config.dist %>/js/app.js', '<%= config.dist %>/css/app.css'],
-    //     }
-    //   }
-    // },
-
-    // css_url_replace: {
-    //   options: {
-    //     staticRoot: ''
-    //   },
-    //   replace: {
-    //     files: {
-    //       '<%= config.dist %>/css/app.css': ['<%= config.dist %>/css/app.css']
-    //     }
-    //   }
-    // },
 
 
     // Usemin

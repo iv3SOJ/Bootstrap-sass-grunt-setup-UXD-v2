@@ -1,75 +1,76 @@
-/** Uncomment to Active **/
-//*Base Folder*//
-//@import "base/mixins";
-//@import "base/typography";
-//@import "base/variables";
-//@import "base/button";
-//@import "base/helpers";
-//End Closing
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+//------------██╗---██╗-██████╗-███╗---██╗██████╗-██╗---██╗------------
+//------------╚██╗-██╔╝██╔═══██╗████╗--██║██╔══██╗██║---██║------------
+//-------------╚████╔╝-██║---██║██╔██╗-██║██║--██║██║---██║------------
+//--------------╚██╔╝--██║---██║██║╚██╗██║██║--██║██║---██║------------
+//---------------██║---╚██████╔╝██║-╚████║██████╔╝╚██████╔╝------------
+//---------------╚═╝----╚═════╝-╚═╝--╚═══╝╚═════╝  ╚═════╝-------------
+//---------------------------------------------------------------------
+//----------------------Technology Made Human--------------------------
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 
-//*Layout Folder*//
-//@import "layout/header";
-//@import "layout/main-content";
-//@import "layout/sidebar";
-//@import "layout/navigation";
-//@import "layout/footer";
-//@import "layout/pages/home";
-//@import "layout/pages/about-us";
-//@import "layout/pages/contact-us";
-//End Closing
+/*!
+ * Project Name: Website Name
+ * Project Version: 1
+ * Owner: Yondu
+ * front-end Developer: John Doe
+*/
 
-//*Modules Folder*//
-//@import  "modules/sub-navigation";
-//@import  "modules/thumbnail";
-//@import  "modules/panel";
-//@import  "modules/modal";
-//@import  "modules/breadcrumbs";
-//@import  "modules/forms";
-//End Closing
+/*!
+ * 01 SETTINGS
+ * Global variables, config switches.
+ */
+//@import "01-settings/variables";
 
-body{
-	text-align:center;
-	background-color:#d8f700;
-}
+/*!
+ * 02 TOOLS
+ * Defualt mixins and functions.
+ */
+//@import "02-tools/mixins";
 
-h1.title{
-	color:#242618;
-	font-size:72px;
-}
+/*!
+ * 03 GENERIC
+ * Ground-zero styles (Bootstrap, Normalize, resets, plugins, etc).
+ */
+//@import "03-generic/bootstrap";
+//@import "03-generic/normalize";
+//@import "03-generic/font-awesome";
 
-div.content{
-	color:#373a25;
-	border:5px solid #e9081b;
-	border-radius:10px;
-	transition: all .25s;
-	width:60%;
-	margin:auto;
+/*!
+ * 04 BASE
+ * Unclassed HTML element (type selectors).
+ */
+//@import "04-base/input";
+//@import "04-base/section";
 
-	p{
-		font-size:24px;
-		line-height:2em;
-	}
-}
+/*!
+ * 05 OBJECT
+ * Cosmetic-free design patterns.
+ */
+//@import "05-object/header";
+//@import "05-object/main-wrap";
 
-h1.title, div.content p{
-	text-shadow:0px 1px 1px rgba(255,255,255,0.5);
-}
+/*!
+ * 06 COMPONENTS
+ * Designed components, Chunk of UI.
+ */
+//@import "06-components/thumbnail-img";
+//@import "06-components/main-nav";
 
-img{
-	width:100%;
-}
+/*!
+ * 07 THEMES
+ * Custom Theming
+ */
+//@import "07-themes/light-theme";
+//@import "07-themes/dark-theme";
 
-.container{
-	width:100%;
-}
+/*!
+ * 08 TRUMPS
+ * (no relation). Helpers and overrides.
+ */
+//@import "08-trumps/overrides";
+//@import "08-trumps/helpers";
 
-.malihu{
-	height:300px;
-	// transform: rotate(45deg);
 
-	ul{
-		li{
-			margin:20px;
-		}
-	}
-}
