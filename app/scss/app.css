@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**---------------------------------------------------------------------
  * ---------------------------------------------------------------------
  * ------------██╗---██╗-██████╗-███╗---██╗██████╗-██╗---██╗------------
@@ -11,66 +12,43 @@
  * ---------------------------------------------------------------------
  * ---------------------------------------------------------------------
 */
-
 /**
  * Project Name: Website Name
  * Project Version: 1
  * Owner: Yondu
  * front-end Developer: John Doe
 */
-
 /**
  * 01 SETTINGS
  * Global variables, config switches.
  */
-//@import "01-settings/variables";
-
 /**
  * 02 TOOLS
  * Defualt mixins and functions.
  */
-//@import "02-tools/mixins";
-
 /**
  * 03 GENERIC
  * Ground-zero styles (Bootstrap, Normalize, resets, plugins, etc).
  */
-//@import "bootstrap";
-//@import "03-generic/bootstrap-framework";
-//@import "03-generic/normalize";
-//@import "03-generic/font-awesome";
-
 /**
  * 04 BASE
  * Unclassed HTML element (type selectors).
  */
-//@import "04-base/input";
-//@import "04-base/section";
-
 /**
  * 05 OBJECT
  * Cosmetic-free design patterns.
  */
-//@import "05-objects/header";
-//@import "05-objects/main-wrap";
-
 /**
  * 06 COMPONENTS
  * Designed components, Chunk of UI.
  */
-//@import "06-components/thumbnail-img";
-//@import "06-components/main-nav";
-
 /**
  * 07 THEMES
  * Custom Theming
  */
-//@import "07-themes/light-theme";
-//@import "07-themes/dark-theme";
-
 /**
  * 08 TRUMPS
  * (no relation). Helpers and overrides.
  */
-//@import "08-trumps/overrides";
-//@import "08-trumps/helpers";
+
+/*# sourceMappingURL=app.css.map */
